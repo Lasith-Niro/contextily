@@ -19,59 +19,52 @@ def add_basemap(ax, zoom=ZOOM, url=sources.ST_TERRAIN,
         crs=None, resampling=Resampling.bilinear,
         **extra_imshow_args):
     """
-    Add a (web/local) basemap to `ax`
-    ...
+    Add a (web/local) basemap to `ax`.
 
-    Arguments
-    ---------
-    ax                  : AxesSubplot
-                          Matplotlib axis with `x_lim` and `y_lim` set in Web
-                          Mercator (EPSG=3857)
-    zoom                : int/'auto'
-                          [Optional. Default='auto'] Level of detail for the
-                          basemap. If 'auto', if calculates it automatically.
-                          Ignored if `url` is a local file.
-    url                 : str
-                          [Optional. Default: 'http://tile.stamen.com/terrain/tileZ/tileX/tileY.png']
-                          Source url for web tiles, or path to local file. If
-                          local, the file is read with `rasterio` and all
-                          bands are loaded into the basemap.
-    interpolation       : str
-                          [Optional. Default='bilinear'] Interpolation
-                          algorithm to be passed to `imshow`. See
-                          `matplotlib.pyplot.imshow` for further details.
-    attribution         : str
-                          [Optional. Defaults to standard `ATTRIBUTION`] Text to be added at the
-                          bottom of the axis.
-    attribution_size    : int
-                          [Optional. Defaults to `ATTRIBUTION_SIZE`].
-                          Font size to render attribution text with.
-    reset_extent        : Boolean
-                          [Optional. Default=True] If True, the extent of the
-                          basemap added is reset to the original extent (xlim,
-                          ylim) of `ax`
-    crs                 : None/str/CRS
-                          [Optional. Default=None] CRS,
-                          expressed in any format permitted by rasterio, to
-                          use for the resulting basemap. If
-                          None (default), no warping is performed and the
-                          original Web Mercator (`EPSG:3857`, 
-                          {'init' :'epsg:3857'}) is used.
-    resampling          : <enum 'Resampling'>
-                          [Optional. Default=Resampling.bilinear] Resampling 
-                          method for executing warping, expressed as a 
-                          `rasterio.enums.Resampling` method
+    Parameters
+    ----------
+    ax : AxesSubplot
+        Matplotlib axis with `x_lim` and `y_lim` set in Web
+        Mercator (EPSG=3857)
+    zoom : int/'auto'
+        [Optional. Default='auto'] Level of detail for the
+        basemap. If 'auto', if calculates it automatically.
+        Ignored if `url` is a local file.
+    url : str
+        [Optional. Default: 'http://tile.stamen.com/terrain/tileZ/tileX/tileY.png']
+        Source url for web tiles, or path to local file. If local, the file
+        is read with `rasterio` and all bands are loaded into the basemap.
+    interpolation : str
+        [Optional. Default='bilinear'] Interpolation algorithm to be passed
+        to `imshow`. See `matplotlib.pyplot.imshow` for further details.
+    attribution : str
+        [Optional. Defaults to standard `ATTRIBUTION`] Text to be added at the
+        bottom of the axis.
+    attribution_size : int
+        [Optional. Defaults to 8].
+        Font size to render attribution text with.
+    reset_extent : boolean
+        [Optional. Default=True] If True, the extent of the basemap added
+        is reset to the original extent (xlim, ylim) of `ax`
+    crs : None/str/CRS
+        [Optional. Default=None] CRS, expressed in any format permitted
+        by rasterio, to use for the resulting basemap. If None (default),
+        no warping is performed and the original Web Mercator (`EPSG:3857`, 
+        {'init' :'epsg:3857'}) is used.
+    resampling : <enum 'Resampling'>
+        [Optional. Default=Resampling.bilinear] Resampling method for
+        executing warping, expressed as a `rasterio.enums.Resampling` method.
     **extra_imshow_args : dict
-                          Other parameters to be passed to `imshow`.
+        Other parameters to be passed to `imshow`.
 
     Returns
     -------
-    ax                  : AxesSubplot
-                          Matplotlib axis with `x_lim` and `y_lim` set in Web
-                          Mercator (EPSG=3857) containing the basemap
+    ax : AxesSubplot
+        Matplotlib axis with `x_lim` and `y_lim` set in Web
+        Mercator (EPSG=3857) containing the basemap
 
-    Example
-    -------
+    Examples
+    --------
 
     >>> db = gpd.read_file(ps.examples.get_path('virginia.shp'))\
                 .to_crs(epsg=3857)
