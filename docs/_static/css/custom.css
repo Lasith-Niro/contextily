@@ -1,12 +1,11 @@
 /* Override some aspects of the pydata-sphinx-theme */
 
-body {
-  padding-top: 0px;
+:root {
+  --color-primary: #333;
 }
 
-h1,
-h2 {
-  color: #333;
+body {
+  padding-top: 0px;
 }
 
 @media (min-width: 768px) {
@@ -45,6 +44,6 @@ code {
 } */
 
 a.navbar-brand-text {
-  color: #333;
+  color: var(--color-primary);
   font-size: xx-large;
 }
